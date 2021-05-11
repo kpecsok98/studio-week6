@@ -68,13 +68,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
     	// Create Map Object
-    	var map = L.map('map',{ center: [39.7644,-104.8548], zoom: 9 });
+    	var map = L.map('map',{ center: [14.1163,-5.0999], zoom: 5 });
 
     	// Add Tile Layer
 		L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
 			attribution: 'Tiles by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> | Data by <a href="url here">Who???</a>',
 			maxZoom: 17,
-			minZoom: 9
+			minZoom: 5
 		}).addTo(map);
 
 		// Null variable that will hold Healthsites data
@@ -82,14 +82,16 @@
 
 		// Add GeoJSON Data to the map when it loads
 		$.getJSON("data/Mali_healthsites.geojson",function(data){
-    	// set Healthsites to the dataset and add the Healthsites GeoJSON layer to the map
-    	Healthsites = L.geoJson(data,{
-									onEachFeature: function (feature, layer) {
-													layer.bindPopup(); // What's missing here?
-								  }
-					}).addTo(map);
-		  });
-
+		    // set Healthsites to the dataset and add the Healthsites GeoJSON layer to the map
+		    Healthsites = L.geoJson(data,{
+		      onEachFeature: function (feature, layer) {
+		        layer.bindPopup('Type: '+feature.properties.amenity+'<br>Name: '+feature.properties.name+'');
+		    }, pointToLayer: function (feature, latlng) { // We're adding pointToLayer & the marker variable.
+		      var marker = L.marker(latlng,{icon: healthIcon});
+		      return marker;
+		      }
+		    }).addTo(map);
+		});
 		// Create Custom Icons Here
 		// Start by creating a standard Health Icon
 		var healthIcon = L.icon({
@@ -98,7 +100,7 @@
   		iconAnchor: [12,12],
   		popupAnchor: [0,-6]
 		});
-		
+
 		// Add Admin unit Polygons
 
 		// Create Leaflet Control Object for Legend
