@@ -51,6 +51,37 @@
 			margin-top: 0px;
 			margin-bottom: 0px;
 		}
+
+		.legend {
+						line-height: 18px;
+						color: #333333;
+						font-family: Helvetica, sans-serif;
+						padding: 6px 8px;
+						background: white;
+						background: rgba(255,255,255,0.8);
+						box-shadow: 0 0 15px rgba(0,0,0,0.2);
+						border-radius: 5px;
+		}
+
+		.legend i {
+						width: 18px;
+						height: 18px;
+						float: left;
+						margin-right: 8px;
+						opacity: 0.7;
+		}
+
+		.legend img {
+						width: 18px;
+						height: 18px;
+						float: left;
+		}
+
+		.legend p {
+						font-size: 12px;
+						line-height: 18px;
+						margin: 0;
+		}
 	</style>
 </head>
 <body>
@@ -181,36 +212,7 @@
 		// Add Legend to Map
 		legend.addTo(map);
 
-	  .legend {
-						line-height: 18px;
-						color: #333333;
-						font-family: Helvetica, sans-serif;
-						padding: 6px 8px;
-						background: white;
-						background: rgba(255,255,255,0.8);
-						box-shadow: 0 0 15px rgba(0,0,0,0.2);
-						border-radius: 5px;
-		}
 
-		.legend i {
-						width: 18px;
-						height: 18px;
-						float: left;
-						margin-right: 8px;
-						opacity: 0.7;
-		}
-
-		.legend img {
-						width: 18px;
-						height: 18px;
-						float: left;
-		}
-
-		.legend p {
-						font-size: 12px;
-						line-height: 18px;
-						margin: 0;
-		}
 
 		// Add Scale Bar to Map
 		L.control.scale({position: 'bottomleft'}).addTo(map);
@@ -222,6 +224,8 @@
   		errorMessage: "No place found.",
 		})
 		.addTo(map);
+
+
 
 
 	</script>
